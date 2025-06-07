@@ -1,5 +1,4 @@
 import {Telegraf, Markup, Context} from "telegraf"
-const token = "8002815581:AAHwT9Hx8aJneo9de7T6S2YB_INEy6XHY1A"
 const webAppUrl = "https://testwebapp300.web.app"
 
 const bot = new Telegraf(import.meta.env.VITE_BOT_TOKEN)
