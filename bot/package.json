@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "pinia": "^3.0.3",
     "telegraf": "^4.16.3"
   }
 }

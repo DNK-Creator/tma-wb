@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: Pusia Bold;
+  src: url("Pusia Bold.otf") format("opentype");
+}
+
 html,
 body {
   margin: 0;
@@ -43,10 +48,15 @@ body {
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 85%;
+  width: auto;
 }
 
 .game-container {
-  width: 200px;
+  width: 100%;
+  height: 100%;
+  align-content: center;
   margin: 0 auto;
 }
 
@@ -75,33 +85,6 @@ body {
   user-select: none;
   animation: move-up 2s forwards;
 }
-/* === NEW === */
-.menu {
-  background: #2a292e;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  left: 1rem;
-  right: 1rem;
-  justify-content: space-around;
-  height: 60px;
-  border-radius: 20px;
-  font-size: 1.5rem;
-}
-
-.menu-button {
-  color: #4e4d52;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.menu-button:hover,
-.menu-button.active {
-  color: #fff;
-  cursor: pointer;
-}
-/* === /NEW === */
 
 @keyframes move-up {
   0% {
@@ -115,41 +98,55 @@ body {
   }
 }
 
-.game {
+.game-light {
   position: relative;
-  padding: 1rem;
+  background: linear-gradient(
+	to right bottom,
+	rgb(240, 142, 250),
+	rgb(253, 248, 253)
+  );
+  /* 4. Hide scrollbars in Webkit browsers */
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  /* 5. Hide scrollbars in Firefox */
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+  -webkit-overflow-scrolling: touch;
 }
+
+.game-dark {
+  position: relative;
+  background: linear-gradient(
+	to right bottom,
+	#9d5da4,
+	rgb(209, 179, 209)
+  );
+  /* 4. Hide scrollbars in Webkit browsers */
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  /* 5. Hide scrollbars in Firefox */
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
 
 .page {
   width: 100vw;
-  height: calc(100vh - 60px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
+  align-content: center;
 }
 
 .progress {
   position: relative;
-}
-
-.progress-level {
-  text-align: center;
-  margin-bottom: 0.5rem;
-  color: #fff;
-  font-weight: normal;
-  display: flex;
-  justify-content: space-between;
-}
-
-.progress-container {
-  position: relative;
-  width: 100%;
-  height: 6px;
-  border-radius: 25px;
-  margin-bottom: 1rem;
-  background: #4b402e;
-  overflow: hidden;
 }
 
 .progress-value {
@@ -159,50 +156,6 @@ body {
   top: 0;
   bottom: 0;
   transition: 0.2s width ease;
-}
-
-.text-content {
-  color: #fff;
-}
-
-.text-content h1,
-.text-content h3 {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.list {
-}
-
-.list-item {
-  background: #2a292e;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  margin-bottom: 1rem;
-}
-
-.list-btn {
-  background: #fff;
-  color: #000;
-  border-radius: 20px;
-  padding: 0 0.5rem;
-  text-decoration: none;
-  margin-left: 1rem;
-}
-
-.list-btn.done {
-  background: #008800;
-  color: #fff;
-}
-
-.referal {
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  background: gold;
-  border: none;
 }
 
 .center {
