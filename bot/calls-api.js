@@ -1,7 +1,7 @@
 import supabase from './supab.js'
 import 'dotenv/config'
 
-const botToken=process.env.VITE_BOT_TOKEN
+const botToken=process.env.BOT_TOKEN
 const user_first_Name = "Anonymous"
 
 export async function fetchTasks() {

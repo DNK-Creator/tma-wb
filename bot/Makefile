@@ -7,6 +7,6 @@ run:
 	  --restart unless-stopped \
 	  -p 3000:3000 \
 	  --name tgbot \
-	  -e BOT_TOKEN=$(VITE_BOT_TOKEN) \
-	  -e SUPABASE_KEY=$(VITE_SUPABASE_KEY) \
+	  -e BOT_TOKEN=$(BOT_TOKEN) \
+	  -e SUPABASE_KEY=$(SUPABASE_KEY) \
 	  tgbot
