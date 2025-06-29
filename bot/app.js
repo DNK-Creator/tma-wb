@@ -13,6 +13,15 @@ console.log(
   token ? `${token.slice(0,4)}…${token.slice(-4)}` : 'undefined!'
 );
 
+if (!token) {
+  console.error('❌ BOT_TOKEN is not set!')
+  process.exit(1)
+}
+if (!key) {
+  console.error('❌ SUPABASE_KEY is not set!')
+  process.exit(1)
+}
+
 // one of the six free/custom emoji IDs you can use; for example, 🎉:
 const effectId = "5159385139981059251";
 const effectIdTwo = "5046509860389126442";
