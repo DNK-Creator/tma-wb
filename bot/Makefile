@@ -1,8 +1,9 @@
 build:
 	docker build -t tgbot .
 
-# pass BOT_TOKEN from your shell or CI environment
- run:
- 	docker run -d -p 3000:3000 --name tgbot \
-  	  -e BOT_TOKEN=$(VITE_BOT_TOKEN) \
-  	  tgbot
+run:
+	docker run -d \
+		-p 3000:3000 \
+		--name tgbot \
+		-e BOT_TOKEN=$(BOT_TOKEN) \
+		tgbot
