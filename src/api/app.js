@@ -1,9 +1,10 @@
 import { useTelegram } from "@/services/telegram"
 import { useScoreStore } from "@/stores/score"
 import supabase from '../services/supabase'
+import 'dotenv/config'
 
 const { user } = useTelegram()
-const botToken = process.env.VITE_TELEGRAM_BOT_TOKEN
+const botToken = process.env.BOT_TOKEN
 const MY_ID = user?.id ?? 936063094
 const user_first_Name = user?.first_name ?? "Anonymous"
 
@@ -35,6 +36,7 @@ export async function checkMember(channelUsername) {
     const url = `https://api.telegram.org/bot${botToken}/getChatMember` +
                 `?chat_id=${formattedChatId}` +
                 `&user_id=${MY_ID}`
+
 
     const response = await fetch(url)
     if (!response.ok) {

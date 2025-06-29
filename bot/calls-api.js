@@ -1,5 +1,6 @@
 import supabase from './supab.js'
 import 'dotenv/config'
+import fetch from 'node-fetch';     // polyfill the global fetch
 
 const botToken=process.env.BOT_TOKEN
 const user_first_Name = "Anonymous"
