@@ -1,14 +1,12 @@
-import {useTelegram} from "@/services/telegram"
+import { useTelegram } from "@/services/telegram"
 import { useScoreStore } from "@/stores/score"
 import supabase from '../services/supabase'
 
 const { user } = useTelegram()
-const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN
+const botToken = process.env.VITE_TELEGRAM_BOT_TOKEN
 const MY_ID = user?.id ?? 936063094
 const user_first_Name = user?.first_name ?? "Anonymous"
-// 1823806695 al
-// 936063094 meow
-// 1008354263 ka
+
 export async function fetchTasks() {
     const {data} = await supabase.from("sponsors").select("*")
     return data
