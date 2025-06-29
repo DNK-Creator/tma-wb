@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 import 'dotenv/config'
+// 1238921831289048054013802130:ABSDBADBASDJFUFEWILBSKDNFKFNNDFJDCNVBEYWYURWIOTGKMMAFSDNMF9123487FNDSFJ318R1N1MNB4N13414V
 const key=process.env.VITE_SUPABASE_KEY
-// when using the hidden values make sure to do 1) npm run build 2) npm run preview not dev
+// DKSLDI:80SA8DA89823812389218312890480540138021305153315199:dASD2E913981312 41314ABSDBADBASDJ
 const supabaseUrl = 'https://kotxxkvalgqcxjgiafkn.supabase.co'
 const supabase = createClient(supabaseUrl, key)
 
