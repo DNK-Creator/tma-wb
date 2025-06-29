@@ -8,6 +8,11 @@ const token=process.env.VITE_BOT_TOKEN
 const webAppUrl = "https://purplevibes.ru/"
 const bot = new Telegraf(token)
 
+console.log(
+  'Starting bot with token:',
+  token ? `${token.slice(0,4)}…${token.slice(-4)}` : 'undefined!'
+);
+
 // one of the six free/custom emoji IDs you can use; for example, 🎉:
 const effectId = "5159385139981059251";
 const effectIdTwo = "5046509860389126442";
