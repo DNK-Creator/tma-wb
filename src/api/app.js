@@ -4,8 +4,8 @@ import supabase from '../services/supabase'
 import 'dotenv/config'
 
 const { user } = useTelegram()
-const botToken = process.env.BOT_TOKEN
-const MY_ID = user?.id ?? 936063094
+const botToken = import.meta.env.VITE_BOT_TOKEN
+const MY_ID = user?.id ?? 999
 const user_first_Name = user?.first_name ?? "Anonymous"
 
 export async function fetchTasks() {
@@ -57,7 +57,6 @@ export async function checkMember(channelUsername) {
         }
         const status = data.result.status
         const isMember = ['creator', 'administrator', 'member'].includes(status)
-        console.log(isMember? "Success! The person is in the sponsors channel" : "You have to subcribe to the sponsor: " + `${channelUsername}`)
         return isMember
     } catch (err) {
         console.error('Error checking channel membership:', err)

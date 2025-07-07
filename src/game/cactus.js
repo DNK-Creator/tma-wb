@@ -41,9 +41,19 @@ export function updateCactus(delta, speedScale) {
 }
 
 export function getCactusRects() {
-  return [...document.querySelectorAll('[data-cactus]')].map(cactus =>
-    cactus.getBoundingClientRect()
-  )
+  return [...document.querySelectorAll('[data-cactus]')].map(cactus => {
+    const rect = cactus.getBoundingClientRect()
+    // inset by 20% of width/height on each side:
+    const padX = rect.width  * 0.2
+    const padY = rect.height * 0.2
+
+    return {
+      left:   rect.left   + padX,
+      right:  rect.right  - padX,
+      top:    rect.top    + padY,
+      bottom: rect.bottom - padY,
+    }
+  })
 }
 
 function createCactus() {
@@ -52,7 +62,7 @@ function createCactus() {
   const cactus = document.createElement('img')
   cactus.dataset.cactus = 'true'
   cactus.src = new URL(
-    '../assets/Game/BUSH-FLOWERS.png',
+    '../assets/Game/Cactus_New.png',
     import.meta.url
   ).href
   cactus.classList.add('cactus')

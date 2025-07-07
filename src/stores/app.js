@@ -72,8 +72,6 @@ export const useAppStore = defineStore('app', {
 
       this.tasks = kept
       this.not_done_tasks = notDone
-      console.log(this.not_done_tasks)
-      console.log(this.tasks)
 
       // return true only if there are sponsors and all are “done”
       return this.not_done_tasks.length > 0

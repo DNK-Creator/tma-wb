@@ -18,7 +18,7 @@ import {
 } from './reward.js'
 
 const WORLD_WIDTH = 100
-const WORLD_HEIGHT = 27
+const WORLD_HEIGHT = 45
 const SPEED_SCALE_INCREASE = 0.00001
 
 let lastTime = null
@@ -30,21 +30,30 @@ let startScreenElem
 let actionButtonElem
 
 export function setPixelToWorldScale() {
-  const worldElement = document.querySelector('[data-world]')
-  if (!worldElement) return
+  const world = document.querySelector('[data-world]')
+  const below = document.querySelector('.below-ground')
+  if (!world || !below) return
 
-  let worldToPixelScale
+  // 1) compute world scale (unchanged)
+  let scale
   if (
     window.innerWidth / window.innerHeight <
     WORLD_WIDTH / WORLD_HEIGHT
   ) {
-    worldToPixelScale = window.innerWidth / WORLD_WIDTH
+    scale = window.innerWidth / WORLD_WIDTH
   } else {
-    worldToPixelScale = window.innerHeight / WORLD_HEIGHT
+    scale = window.innerHeight / WORLD_HEIGHT
   }
 
-  worldElement.style.width = `${WORLD_WIDTH * worldToPixelScale}px`
-  worldElement.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`
+  // 2) size your world
+  const worldPxW = WORLD_WIDTH  * scale
+  const worldPxH = WORLD_HEIGHT * scale
+  world.style.width  = `${worldPxW}px`
+  world.style.height = `${worldPxH}px`
+
+  // 3) pin the brown bar just below it:
+  below.style.top = `${worldPxH}px`
+  // (leave its CSS bottom:0 in place so it stretches to the viewport bottom)
 }
 
 export function startGameLoop() {

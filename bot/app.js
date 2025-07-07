@@ -8,11 +8,6 @@ const token=process.env.BOT_TOKEN
 const webAppUrl = "https://purplevibes.ru/"
 const bot = new Telegraf(token)
 
-console.log(
-  'Starting bot with token:',
-  token ? `${token.slice(0,4)}…${token.slice(-4)}` : 'undefined!'
-);
-
 // one of the six free/custom emoji IDs you can use; for example, 🎉:
 const effectId = "5159385139981059251";
 const effectIdTwo = "5046509860389126442";
@@ -68,10 +63,10 @@ async function handleStart(ctx) {
 
     if(isFine) {
         return ctx.replyWithPhoto(
-        { url: "https://i.postimg.cc/WpyynBfq/meow.png" },
+        { url: "https://i.postimg.cc/Hkww4N89/Main-Menu-Bot.png" },
         {
-            caption: "<b>Добро пожаловать в PurpleVibes 🌷 </b>Крути рулетку и " +
-                    "<b>выигрывай подарочные карты</b> от 300 ₽ до 5000 ₽ ежедневно. " +
+            caption: "<b>Добро пожаловать в главное меню PurpleVibes 🌺 </b>Крути рулетку и " +
+                    "<b>выигрывай подарочные карты</b> от 300 ₽ до 2000 ₽ ежедневно. " +
                     "Приглашай друзей, поднимайся в топе и <b>гарантированно забирай дорогие карты.</b>",
             parse_mode: "HTML",
             // <-- spread the inlineKeyboard into the options:
@@ -192,10 +187,10 @@ bot.action("CHECK_SUB", async ctx => {
 
     // success → edit with roulette link (remembering original ref)
       return ctx.replyWithPhoto(
-      { url: "https://i.postimg.cc/WpyynBfq/meow.png" },
+      { url: "https://i.postimg.cc/Hkww4N89/Main-Menu-Bot.png" },
       {
-          caption: "<b>Добро пожаловать в PurpleVibes 🌷 </b>Крути рулетку и " +
-                  "<b>выигрывай подарочные карты</b> от 300 ₽ до 5000 ₽ ежедневно. " +
+          caption: "<b>Добро пожаловать в главное меню PurpleVibes 🌺 </b>Крути рулетку и " +
+                  "<b>выигрывай подарочные карты</b> от 300 ₽ до 2000 ₽ ежедневно. " +
                   "Приглашай друзей, поднимайся в топе и <b>гарантированно забирай дорогие карты.</b>",
           parse_mode: "HTML",
           // <-- spread the inlineKeyboard into the options:

@@ -7,8 +7,8 @@ import {
 const SPEED = 0.05              // slightly slower than cacti
 const INTERVAL_MIN = 400
 const INTERVAL_MAX = 3000
-const FLY_AMPLITUDE = 10         // percent of world height
-const FLY_SPEED = 0.05         // how fast it bobs up/down
+const FLY_AMPLITUDE = 4         // percent of world height
+const FLY_SPEED = 0.0015         // how fast it bobs up/down
 const RARE_CHANCE = 1 / 25
 
 let nextRewardTime
@@ -63,21 +63,23 @@ function createReward() {
   const isRare = Math.random() < RARE_CHANCE
   el.dataset.reward = isRare ? 'rare' : 'normal'
   el.src = new URL(
-    `../assets/Game/${isRare ? 'gamble' : 'coin'}.png`,
+    `../assets/Game/${isRare ? 'gamble' : 'NUT'}.png`,
     import.meta.url
   ).href
   el.classList.add('reward')
-
-  // ←— double its size
-  el.style.transform = 'scale(1.6)'
-  // center the scaling on the element’s midpoint
+  el.style.transform = 'scale(1.5)'
   el.style.transformOrigin = 'center'
 
-  // start off-screen right
+  // start off‑screen right
   setCustomProperty(el, '--left', 100)
-  const baseY = randomBetween(40, 70)
+
+  // pick a lower Y
+  const baseY = randomBetween(40, 50)
   el.dataset.baseY = baseY
   el.dataset.phase = Math.random() * Math.PI * 2
+
+  // ←— **seed the bottom** so there's no visual jump
+  setCustomProperty(el, '--bottom', baseY)
 
   worldElem.append(el)
 }

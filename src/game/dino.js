@@ -5,12 +5,12 @@ import {
 } from "./updateCustomProperty.js"
 
 const JUMP_SPEED = 0.45
-const GRAVITY = 0.0015
-const DINO_FRAME_COUNT = 2
+const GRAVITY = 0.0014
+const RUN_FRAME_COUNT = 4
 const FRAME_TIME = 100
 
+let runFrame
 let isJumping
-let dinoFrame
 let currentFrameTime
 let dinoElem    // module‑scoped reference to the <img data-dino>
 let yVelocity
@@ -19,14 +19,14 @@ let yVelocity
 export function setupDino() {
   dinoElem = document.querySelector('[data-dino]')
   isJumping = false
-  dinoFrame = 0
+  runFrame = 0
   currentFrameTime = 0
   yVelocity = 0
   setCustomProperty(dinoElem, "--bottom", 0)
 
   // Ensure stationary frame initially
   dinoElem.src = new URL(
-    '../assets/Game/dino-stationary.png',
+    '../assets/Game/RUN_1.PNG',
     import.meta.url
   ).href
 
@@ -36,7 +36,7 @@ export function setupDino() {
 
 export function setDinoLose() {
   dinoElem.src = new URL(
-    '../assets/Game/dino-lose.png',
+    '../assets/Game/LOST.PNG',
     import.meta.url
   ).href
 }
@@ -51,44 +51,46 @@ export function getDinoRect() {
   return dinoElem.getBoundingClientRect()
 }
 
+
 function handleRun(delta, speedScale) {
-  if (!dinoElem) return
+  if (!dinoElem) return;
 
   if (isJumping) {
     dinoElem.src = new URL(
-      '../assets/Game/dino-stationary.png',
+      '../assets/Game/RUN_1.PNG',
       import.meta.url
-    ).href
-    return
+    ).href;
+    return;
   }
 
   if (currentFrameTime >= FRAME_TIME) {
-    dinoFrame = (dinoFrame + 1) % DINO_FRAME_COUNT
+    runFrame = (runFrame + 1) % RUN_FRAME_COUNT;
+    console.log(`../assets/Game/RUN_${runFrame + 1}.PNG`)
     dinoElem.src = new URL(
-      `../assets/Game/dino-run-${dinoFrame}.png`,
+      `../assets/Game/RUN_${runFrame + 1}.PNG`,
       import.meta.url
-    ).href
-    currentFrameTime -= FRAME_TIME
+    ).href;
+    currentFrameTime -= FRAME_TIME;
   }
 
-  currentFrameTime += delta * speedScale
+  currentFrameTime += delta * speedScale;
 }
 
 function handleJump(delta) {
-  if (!isJumping) return
+  if (!isJumping) return;
 
   incrementCustomProperty(
     dinoElem,
     "--bottom",
     yVelocity * delta
-  )
+  );
 
   if (getCustomProperty(dinoElem, "--bottom") <= 0) {
-    setCustomProperty(dinoElem, "--bottom", 0)
-    isJumping = false
+    setCustomProperty(dinoElem, "--bottom", 0);
+    isJumping = false;
   }
 
-  yVelocity -= GRAVITY * delta
+  yVelocity -= GRAVITY * delta;
 }
 
 export function onJump(e) {

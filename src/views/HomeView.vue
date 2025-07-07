@@ -7,7 +7,7 @@
     <div class="header-row" v-if="textActive">
       <TopHeader />
       <div class="right-group">
-        <img src="../assets/coin.png" alt="coin"/>
+        <img src="../assets/NUT.png" alt="coin"/>
         <span class="score-dark" v-if="userTheme == `light`">{{ scoreStore.score }}</span>
         <span class="score-light" v-else>{{ scoreStore.score }}</span>
       </div>
@@ -93,8 +93,9 @@
     </div>
     <div class="hold-button" v-else-if="textActive">
       <div class="button" @click="buySpin">
-        <button type="button">Купить билет (50)
-          <img src="@/assets/coin.png" alt="Coin" class="coin-icon" />
+        <button type="button">
+          <h2>Купить билет - 50</h2>
+          <img src="../assets/NUT.png" alt="Coin" class="coin-icon" />
         </button>
       </div>
     </div>
@@ -115,6 +116,7 @@ import { useTelegram } from '@/services/telegram'
 import TheMenu from '@/components/TheMenu.vue'
 import TopHeader from '@/components/TopHeader.vue'
 import confetti from 'canvas-confetti'
+import NutImg from '@/assets/NUT.png'
 
 import WheelOfFortune from '@/components/WheelOfFortune.vue'
 
@@ -169,7 +171,7 @@ setInterval(() => now.value = Date.now(), 60_000)
 // 9 hours in ms
 //const NINE_HOURS = 9 * 60 * 60 * 1000
 //fake
-const NINE_HOURS = 60*60*1000
+const NINE_HOURS = 60 * 60 * 1000 * 9
 
 // How many ms remain until the next free spin
 const msUntilNext = computed(() => {
@@ -232,19 +234,34 @@ const wheelSettings = reactive({
 })
 
 const items = ref([
-  { id: 1, name: 'Lose', htmlContent: 'ОРЕШЕК', background: '', weight: 1000, points: 10, opacity: 0.8 },
-  { id: 7, name: 'Win_500', htmlContent: '500', background: '', weight: 2, points: 500, opacity: 1 },
-  { id: 2, name: 'Lose', htmlContent: 'ОРЕШЕК', background: '', weight: 500, points: 15, opacity: 0.8 },
-  { id: 9, name: 'Win_500', htmlContent: '500', background: '', weight: 2, points: 500, opacity: 1 },
-  { id: 3, name: 'Lose', htmlContent: 'ОРЕШЕК', background: '', weight: 500, points: 20, opacity: 0.8 },
+  { id: 1, name: 'Lose', htmlContent: `<img src="${NutImg}" alt="Nut" style="max-width:3vh; max-height:3vh;" />`, background: '', weight: 1000, points: 10, opacity: 0.3 },
+  { id: 7, name: 'Win_500', htmlContent: '500', background: '', weight: 4, points: 500, opacity: 1 },
+  { id: 2, name: 'Lose', htmlContent: `<img src="${NutImg}" alt="Nut" style="max-width:3vh; max-height:3vh;" />`, background: '', weight: 500, points: 15, opacity: 0.3 },
+  { id: 9, name: 'Win_500', htmlContent: '500', background: '', weight: 4, points: 500, opacity: 1 },
+  { id: 3, name: 'Lose', htmlContent: `<img src="${NutImg}" alt="Nut" style="max-width:3vh; max-height:3vh;" />`, background: '', weight: 500, points: 20, opacity: 0.3 },
   { id: 11, name: 'Win_1000', htmlContent: '1000', background: '', weight: 1, points: 1000, opacity: 1 },
-  { id: 4, name: 'Lose', htmlContent: 'ОРЕШЕК', background: '', weight: 500, points: 25, opacity: 0.8 },
+  { id: 4, name: 'Lose', htmlContent: `<img src="${NutImg}" alt="Nut" style="max-width:3vh; max-height:3vh;" />`, background: '', weight: 500, points: 25, opacity: 0.3 },
   { id: 10, name: 'Win_500', htmlContent: '500', background: '', weight: 1, points: 500, opacity: 1 },
-  { id: 5, name: 'Lose', htmlContent: 'ОРЕШЕК', background: '', weight: 1000, points: 5, opacity: 0.8 },
+  { id: 5, name: 'Lose', htmlContent: `<img src="${NutImg}" alt="Nut" style="max-width:3vh; max-height:3vh;" />`, background: '', weight: 1000, points: 5, opacity: 0.3 },
   { id: 8, name: 'Win_500', htmlContent: '500', background: '', weight: 1, points: 500, opacity: 1 },
-  { id: 6, name: 'Lose', htmlContent: 'ОРЕШЕК', background: '', weight: 500, points: 50, opacity: 0.8 },
+  { id: 6, name: 'Lose', htmlContent: `<img src="${NutImg}" alt="Nut" style="max-width:3vh; max-height:3vh;" />`, background: '', weight: 500, points: 50, opacity: 0.3 },
   { id: 12, name: 'Win_2000', htmlContent: '2000', background: '', weight: 1, points: 2000, opacity: 1 },
 ])
+
+// const items = ref([
+//   { id: 1, name: 'Lose', htmlContent: `0`, background: '', weight: 1000, points: 10, opacity: 0.5 },
+//   { id: 7, name: 'Win_500', htmlContent: '500', background: '', weight: 2, points: 500, opacity: 1 },
+//   { id: 2, name: 'Lose', htmlContent: `0`, background: '', weight: 500, points: 15, opacity: 0.5 },
+//   { id: 9, name: 'Win_500', htmlContent: '500', background: '', weight: 2, points: 500, opacity: 1 },
+//   { id: 3, name: 'Lose', htmlContent: `0`, background: '', weight: 500, points: 20, opacity: 0.5 },
+//   { id: 11, name: 'Win_1000', htmlContent: '1000', background: '', weight: 1, points: 1000, opacity: 1 },
+//   { id: 4, name: 'Lose', htmlContent: `0`, background: '', weight: 500, points: 25, opacity: 0.5 },
+//   { id: 10, name: 'Win_500', htmlContent: '500', background: '', weight: 1, points: 500, opacity: 1 },
+//   { id: 5, name: 'Lose', htmlContent: `0`, background: '', weight: 1000, points: 5, opacity: 0.5 },
+//   { id: 8, name: 'Win_500', htmlContent: '500', background: '', weight: 1, points: 500, opacity: 1 },
+//   { id: 6, name: 'Lose', htmlContent: `0`, background: '', weight: 500, points: 50, opacity: 0.5 },
+//   { id: 12, name: 'Win_2000', htmlContent: '2000', background: '', weight: 1, points: 2000, opacity: 1 },
+// ])
 
 const result = ref(null)
 const isSpinning = ref(false)
@@ -267,10 +284,10 @@ async function wheelEndedCallback(value) {
   result.value = value
   if (value.name === 'Lose') { 
     if(spinsStore.spins > 0) {
-      modalMessage.value = `Выиграно ${value.points} монет 🎉 \n У тебя еще есть билеты - попробуй снова!`
+      modalMessage.value = `Выиграно ${value.points} орешков 💜 \n У тебя еще есть билеты - попробуй снова!`
     }
     else {
-      modalMessage.value = `Выиграно ${value.points} монет 🎉 \n Уже через ${timeUntilNext.value}ч. у тебя появится новый билет! \n`
+      modalMessage.value = `Выиграно ${value.points} орешков 💜 \n Уже через ${timeUntilNext.value}ч. у тебя появится новый билет! \n`
       + `А если хочешь получить очень-очень много билетов, ждем тебя в нашей партнерской программе 🌺`
     }
     scoreStore.add(value.points)
@@ -299,7 +316,6 @@ async function wheelEndedCallback(value) {
     const time = fmtHM()
     try {
       await saveWin({ amount, time })
-      console.log('Saved win:', { amount, time })
     } catch (e) {
       console.error('Failed to save win:', e)
     }
@@ -358,7 +374,6 @@ watch(() => firstItemIndex.value, () => {
   // padding: 2vh 5vw 12vh;      // relative padding top/bottom & sides
   box-sizing: border-box;
   color: #fff;
-
   
   .header-row {
     display: flex;
@@ -370,18 +385,23 @@ watch(() => firstItemIndex.value, () => {
 
     .right-group {
       display: flex;
+      height: 100%;
       align-items: center;
-      gap: 1vh;     // space between coin and score
+      object-fit: contain;      // fits without stretching
+      gap: 0.75vh;     // space between coin and score
       img {
-        width: calc(3.25vh + 3vw);           // scales with viewport height
+        width: 3.5vh;           // scales with viewport height
         height: auto;
       }
       span {
-        font-size: 4vh;
+        margin-bottom: 0.75vh;
+        font-size: 3.5vh;
       }
     }
   }
 }
+
+
 
 .loading-circle {
   justify-content: center;
@@ -463,6 +483,11 @@ watch(() => firstItemIndex.value, () => {
   position: relative;  
   display:inline-block;
   z-index: 9;
+
+  h2 {
+    font-size: 2vh;
+    width: 60vw;
+  }
 }
 
 .button button,
@@ -473,12 +498,12 @@ watch(() => firstItemIndex.value, () => {
   color:white;
   font-family: Pusia Bold;
   letter-spacing: 2px;
-  font-size: 2vh;
+  font-size: 2.75vh;
   text-align: center;
   text-decoration:none;
   background-color:#bf01d4;
   position:relative;
-  padding: 3.75vh 7vh;
+  padding: 3.5vh 5vh;
   
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-shadow: 0px 2px 0px #000;
@@ -493,9 +518,22 @@ watch(() => firstItemIndex.value, () => {
   border-radius: 1vh;
 }
 
+/* Remove the huge forced width on the H2 */
+.button button h2 {
+  width: auto;      /* let it size to its content */
+  margin: 0;        /* reset any default margins */
+  white-space: nowrap;
+}
+
+/* Use flex gap to control spacing */
+.button button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;      /* adjust this value to taste */
+}
+
 .coin-icon {
-  margin-left: 0.5em;          /* space between text and coin */
-  width: 1.2em;                /* adjust icon size to match font */
+  width: 4vh;                /* adjust icon size to match font */
   height: auto;
   display: block;              /* good practice inside flex items */
 }
@@ -587,11 +625,11 @@ watch(() => firstItemIndex.value, () => {
   font-size: 2vh;
   text-align: center;
 }
-.modal p {
+.modal-light p {
   white-space: pre-line;
   width: 35vh;
 }
-.modal a {
+.modal-light a {
   white-space: pre-line;
   text-decoration: none;
   color: #80287e;

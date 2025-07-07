@@ -33,7 +33,7 @@ onMounted(async () => {
   setTimeout(() => {
     tg.ready()
     tg.expand()
-  }, 1800);
+  }, 1500);
  // userTheme.value = tg.colorScheme
   userTheme.value = 'light'
 })

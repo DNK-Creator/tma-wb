@@ -1,18 +1,25 @@
 <template>
   <div class="text-content">
-    <h1>Чтобы пользоваться приложением бесплатно, подпишитесь на наших прекрасных спонсоров 🔮 </h1>
-    <h3 v-if="subscribedToAll">Вы на всех подписанны..!</h3>
-    <ul class="list" v-if="!subscribedToAll">
-      <li class="list2-item" v-for="task in app.tasks" :key="task.id" @click.prevent="openTask(task)">
+    <h1>Чтобы пользоваться приложением бесплатно, подпишись на наших чудесных спонсоров:</h1>
+
+    <h3 v-if="subscribedToAll" class="subscribed-ok">Вы на всех подписанны..!</h3>
+
+    <ul v-else class="list">
+      <li
+        v-for="task in app.tasks"
+        :key="task.id"
+        class="list-item"
+        @click.prevent="openTask(task)"
+      >
         {{ task.title }}
+        <span class="external-icon">↗︎</span>
       </li>
     </ul>
+
     <footer>
-      <div class="center">
-        <button class="button-ref" @click="checkManually">
-          <h2 class="ref-text">{{ checkText }}</h2>
-        </button>
-      </div>
+      <button class="check-button" @click="checkManually">
+        {{ checkText }}
+      </button>
     </footer>
   </div>
 </template>
@@ -55,7 +62,7 @@ async function checkManually() {
   })
   setTimeout(function () {
     delayBetweenChecks.value = false
-  }, 5000);
+  }, 4000);
 }
 
 function openTask(task) {
@@ -67,48 +74,98 @@ function openTask(task) {
 }
 </script>
 
+
 <style scoped lang="scss">
-.list2-item {
-  background: #e5e5e5;
+.text-content {
+  user-select: none;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+  text-align: center;
+  padding: 0 5vw;
+  min-height: 100vh;
+  background-image: url("@/assets/background-new.png");
 }
 
-.text-content {
-  text-align: center;
-  text-justify: center;
-  h1 {
-    color: rgb(167, 125, 168);
-    font-family: Pusia Bold;
-    margin: 5vh;
-    margin-top: -20vh;
-  }
+h1 {
+  user-select: none;
+  margin-top: 32vh;
+  margin-bottom: 4vh;
+  font-size: 3vh;
+  font-weight: normal;
+  line-height: 1.3;
+  color: #ffffff;
+  color: #fff;
+  text-shadow: #000 2px 2px 5px;
+  -webkit-font-smoothing: antialiased;
+  font-family: Pusia Bold;
+}
 
-  .list {
-    align-content: center;
-    justify-content: center;
-    .list2-item {
-      align-self: center;
-      justify-self: center;
-      width: 90%;
-    }
-  }
+/* Success message */
+.subscribed-ok {
+  user-select: none;
+  margin-bottom: auto;
+  font-size: 2.2vh;
+  color: #444;
+}
 
-  .center {
-    .button-ref {
-      background-color: purple;
-      padding: 15px;
-      border-radius: 5px;
-      border: none;
-      .ref-text {
-        color: white;
-      }
-    }
-  }
+/* List of sponsor buttons */
+.list {
+  user-select: none;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: auto; /* push footer to bottom */
+  list-style: none;
+  padding: 0;
+  height: 30vh;
+  align-items: center;
+  justify-items: center;
+}
+
+.list-item {
+  user-select: none;
+  position: relative;
+  background: rgb(116, 55, 126, 0.8);
+  border: 1.5px solid rgb(102, 48, 110);
+  border-radius: 12px;
+  padding: 1rem;
+  width: 75%;
+  margin-bottom: 1rem;
+  font-size: 2.5vh;
+  color: #ffffff;
+  font-family: Pusia Bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-item .external-icon {
+  user-select: none;
+  margin-left: 0.5em;
+  font-size: 1.2em;
+  color: #ffffff;
+}
+
+/* Footer “Проверить подписку” button */
+footer {
+  width: 100%;
+  padding: 2vh 0;
+  background: transparent;
+}
+
+.check-button {
+  user-select: none;
+  width: 95%;
+  max-width: 400px;
+  height: 10vh;
+  background-color: #74377e;
+  border: 2.5px solid #ffffff;
+  color: #ffffff;
+  font-size: 2.5vh;
+  font-weight: 600;
+  border-radius: 16px;
+  margin-bottom: 7vh;
+  cursor: pointer;
 }
 </style>

@@ -66,13 +66,14 @@
         data-ground
         />
         <img
-        src="../assets/Game/dino-stationary.png"
+        src="../assets/Game/RUN_1.png"
         alt="Dino"
         class="dino"
         data-dino
         />
 
     </div>
+    <div class="below-ground"></div>
   </div>
   <button
     class="action-button"
@@ -243,18 +244,22 @@ onBeforeUnmount(() => {
 }
 
 .main-game {
-  box-sizing: border-box;
-  user-select: none;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  position: relative;
+  margin-top: 25vh;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  display: grid;
+  align-items: start;     /* ← change this */
+  justify-items: center;   /* still center horizontally */
 }
 
+
 .world {
-  overflow: hidden;
+  overflow: visible;
   position: relative;
+  z-index: 2;
 }
 
 .score {
@@ -295,7 +300,7 @@ onBeforeUnmount(() => {
   --left: 0;
   position: absolute;
   width: 300%;
-  bottom: 0;
+  bottom: calc(-1.2vh - 0.25vw);
   left: calc(var(--left) * 1%)
 }
 
@@ -303,24 +308,36 @@ onBeforeUnmount(() => {
   --bottom: 0;
   position: absolute;
   left: 5%;
-  height: 30%;
+  height: 24%;
   bottom: calc(var(--bottom) * 1%);
 }
 
 .cactus {
   position: absolute;
   left: calc(var(--left) * 1%);
-  height: 30%;
+  height: 16%;
   bottom: 0;
 }
 
 /* Floating reward images */
 .reward {
   position: absolute;
-  width: 5vmin;        /* adjust size as needed */
-  pointer-events: none; /* click-through */
-  will-change: transform, bottom, left;
   left: calc(var(--left) * 1%);
+  /* this line is critical: */
+  bottom: calc(var(--bottom) * 1%);
+  width: 5vmin;
+  pointer-events: none;
+  will-change: transform, bottom, left;
+}
+
+.below-ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(196,61,45);
+  z-index: 0;
+  /* remove width/height/top from here */
 }
 
 .action-button {
@@ -334,9 +351,20 @@ onBeforeUnmount(() => {
   font-family: Pusia Bold;
   padding: 1.25rem 2.5rem;
   border-radius: 0.5rem;
-  background: rgb(152, 57, 169);
+  background: #bf01d4;
+  
   color: #fff;
   border: none;
+
+  /* add smooth transitions for transform and shadow */
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+}
+
+/* when the user clicks / holds the button down */
+.action-button:active {
+  /* slightly scale down and drop shadow to give “pressed” look */
+  transform: translateX(-50%) scale(0.95);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.18);
 }
 
 .overlay {

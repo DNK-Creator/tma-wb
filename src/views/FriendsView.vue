@@ -6,7 +6,7 @@
       <!-- Rewards Section -->
       <section class="rewards-section">
       <div class="rewards-img">
-        <img src="@/assets/squirrel-idle.gif">
+        <img src="@/assets/SQUIRREL_HEAD.gif">
       </div>
       <h2 class="rewards-header">ПРИГЛАШАЙ ДРУЗЕЙ И ПОЛУЧАЙ БИЛЕТЫ!</h2>
       <!-- NEW WRAPPER -->
@@ -127,6 +127,9 @@ $divider: rgba(219, 111, 220, 0.05);
 }
 
 .rewards-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
   user-select: none;
   position: relative;
   justify-self: center;
@@ -142,21 +145,37 @@ $divider: rgba(219, 111, 220, 0.05);
 
   box-shadow: 0 7px 2rem #d653ea;
 
+  // .rewards-img {
+  //   display: block;
+  //   justify-self: center;
+  //   align-self: flex-start;
+  //   justify-content: center;
+  //   align-content: center;
+  //   margin-right: 0 auto;
+  //   width: calc(13vh + 4vw);
+  //   height: calc(13vh + 4vw);
+  //   max-height: 100px;
+  //   max-width: 100px;
+  //   img {
+  //     display: block;
+  //     height: 105%;
+  //     width: 105%;
+  //   }
+  // }
+
   .rewards-img {
-    justify-self: center;
-    align-self: flex-start;
-    justify-content: center;
-    align-content: center;
-    margin-right: 10px;
-    width: calc(13vh + 4vw);
-    height: calc(13vh + 4vw);
-    max-height: 100px;
-    max-width: 100px;
-    img {
-      height: 80%;
-      width: 80%;
-    }
+  /* remove all margin/justify things you had */
+  margin: 0 auto;        // true centering
+  width: calc(13vh + 4vw);
+  max-width: 100px;
+  height: calc(13vh + 4vw);
+  max-height: 100px;
+  img {
+    display: block;
+    width: 100%;           // fill the wrapper
+    height: auto;          // preserve aspect ratio
   }
+}
 
   .rewards-header {
     text-align: center;
@@ -185,12 +204,14 @@ $divider: rgba(219, 111, 220, 0.05);
 .invites-section {
   padding: 20px;
   user-select: none;
+  width: 96%;
 
   .invites-header-notempty {
     font-family: Pusia Bold;
     font-size: calc(2.6vh + 1vw);
-    opacity: 0.7;
+    opacity: 0.6;
     margin-bottom: 8px;
+    font-weight: 50;
   }
 
   .invites-header-empty {
@@ -228,6 +249,7 @@ $divider: rgba(219, 111, 220, 0.05);
         display: flex;
         align-items: center;
         justify-content: center;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-weight: 500;
         margin-right: 16px;
       }
@@ -236,6 +258,7 @@ $divider: rgba(219, 111, 220, 0.05);
         flex: 1;
 
         .friend-name {
+          font-family: Pusia Bold;
           font-size: 16px;
           font-weight: 500;
         }
@@ -252,6 +275,7 @@ $divider: rgba(219, 111, 220, 0.05);
         font-size: 16px;
         font-weight: 700;
         color: $accent;
+        font-family: Pusia Bold;
       }
     }
   }

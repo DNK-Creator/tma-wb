@@ -9,6 +9,7 @@
     ]"
     :style="{ '--border-color': colorScheme === 'light' ? 'white' : 'rgb(60, 24, 51)' }"
   >
+
     <!-- BASE WHEEL -->
     <div
       v-if="baseDisplay"
@@ -198,21 +199,24 @@ export default {
         return -1 * this.firstItemIndex.value * this.itemAngle;
       }
     },
-    degreesVariation: function () {
-      if (!this.resultVariation) {
-        return 0;
-      }
-      const minDegreesVariation =
-        (((this.itemAngle / 2) * this.resultVariation) / 100) * -1;
-      const maxDegreesVariation =
-        ((this.itemAngle / 2) * this.resultVariation) / 100;
-      // Return random value between min and max degrees variation
-      return Number(
-        (
-          Math.random() * (maxDegreesVariation - minDegreesVariation) +
-          minDegreesVariation + Math.random() * (13) * (-1)
-        ).toFixed(2)
-      );
+    degreesVariation() {
+      if (!this.resultVariation) return 0;
+
+      const halfAngle       = this.itemAngle / 2;
+      const variationFactor = this.resultVariation / 100;
+
+      const minDegreesVariation = -halfAngle * variationFactor;
+      const maxDegreesVariation =  halfAngle * variationFactor;
+
+      // base random between min and max
+      const baseRandom = Math.random() * (maxDegreesVariation - minDegreesVariation)
+                      + minDegreesVariation;
+
+      // extra wiggle up to 13°, before or after 50/50
+      const signFlip   = Math.random() < 0.5 ? -1 : 1;
+      const extraWiggle = Math.random() * 13 * signFlip;
+
+      return Number((baseRandom + extraWiggle).toFixed(2));
     },
     counterClockWiseOperator: function () {
       return this.counterClockwise ? -1 : 1;

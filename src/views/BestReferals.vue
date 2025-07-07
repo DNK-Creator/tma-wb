@@ -17,7 +17,7 @@
             :key="ref.telegram"
           > 
             <!-- 1. Avatar on the left -->
-            <img class="avatar" src="@/assets/squirrel-idle.gif" alt="avatar" />
+            <img class="avatar" v-bind:src="getProfilePicture(index)" alt="avatar" />
 
             <!-- 2. Name flexes to fill the space -->
             <span class="ref-name">{{ ref.first_Name }}</span>
@@ -25,7 +25,7 @@
             <!-- 3. Count + right‐side icon grouped together -->
             <div class="count-group">
               <span class="ref-count">
-                <img class="people" src="@/assets/people.png">
+                <img class="people" src="@/assets/PeopleIcon.png">
                 <h2>{{ ref.count }}</h2>
               </span>
               <div class="reward-icon">
@@ -52,6 +52,10 @@ import { fetchReferals } from '@/api/app'
 import { useTelegram } from '@/services/telegram'
 import TheMenu from '@/components/TheMenu.vue'
 import TopHeader from '@/components/TopHeader.vue'
+import Crown from '@/assets/Ref_Crown.png'
+import Gift  from '@/assets/Ref_Gift.png'
+import Silver from '@/assets/Ref_Silver.png'
+import Card  from '@/assets/Ref_Card.png'
 
 // Raw referrals data
 const referalsList = ref([])
@@ -100,6 +104,14 @@ function getRewardIcon(index) {
   return 0
 }
 
+function getProfilePicture(index) {
+  if (index === 0) return Crown
+  if (index === 1) return Gift
+  if (index === 2) return Silver
+  if (index < 10)  return Card
+  return Card
+}
+
 // Referral copy
 const { user } = useTelegram()
 const referalText = ref('Пригласить друга')
@@ -124,7 +136,7 @@ function share() {
 
 .ref-text {
   color: white;
-  font-size: 15px;
+  font-size: 2vh;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
@@ -208,7 +220,7 @@ $color-list: rgba(234, 83, 211, 0);
     .button-ref {
       z-index: 2;
       z-index: 10;
-      height: 6vh;
+      height: 7vh;
       width: auto;
       padding: 0.5rem 1rem;
       border-radius: 7px;
@@ -241,8 +253,8 @@ $color-list: rgba(234, 83, 211, 0);
   position: relative;
   z-index: 5;
 
-  height: calc(90vh - 23rem);
-  max-height: calc(97vh - 23rem);
+  height: calc(90vh - 22.25rem);
+  max-height: calc(97vh - 22.25rem);
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -264,38 +276,40 @@ $color-list: rgba(234, 83, 211, 0);
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.7rem;
 
   li {
     position: relative;     // for our ::before counter
     display: flex;
+    height: 70px;
     align-items: center;
     counter-increment: my-counter;
     justify-items: center;
 
     width: 100%;
-    border-radius: 3rem;
+    border-radius: 0;
     background: $color-list;
 
     /* 4. the big number in the bottom left */
     &::before {
-      content: counter(my-counter);
+      content: '#' counter(my-counter);
       position: absolute;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: bold;
-      bottom: -0.25rem;
-      left: 2.25rem;            // just under the avatar
-      color: rgba(255,255,255,0.7);
+      bottom: 0.15rem;
+      left: 3.65rem;            // just under the avatar
+      color: rgba(255,255,255, 0.6);
     }
 
     /* 1. Avatar */
     .avatar {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 50%;
+      width: auto;
+      height: 100%;
       object-fit: cover;
       margin-right: 1rem;
       flex-shrink: 0;
+      align-self: center;
+      justify-self: center;
     }
 
     /* 2. Name */
@@ -328,9 +342,9 @@ $color-list: rgba(234, 83, 211, 0);
 
       .people {
       grid-column: 1;          // always in the first column
-      width: 1.8rem;
-      height: 1.8rem;
-      opacity: 1;
+      width: 1.6rem;
+      height: 1.35rem;
+      opacity: 0.85;
       justify-self: start;     // stick icon to the left edge of its cell
       }
        h2 {
